@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   typescript: {
-    // Это заставит Vercel собрать сайт, даже если есть ошибки типов
+    // Это разрешит билд, даже если в коде ошибки типов (красные линии)
     ignoreBuildErrors: true,
   },
   eslint: {
