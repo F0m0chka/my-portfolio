@@ -1,8 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   typescript: {
-    // Позволяет собрать сайт, игнорируя красные подчеркивания
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: true, // Это позволит пройти билд
   },
   eslint: {
     ignoreDuringBuilds: true,
