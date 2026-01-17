@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   typescript: {
-    // Разрешаем билд даже с ошибками типов
+    // Это заставит Vercel собрать сайт, даже если есть ошибки типов
     ignoreBuildErrors: true,
   },
   eslint: {
-    // Игнорируем ошибки линтера при сборке
+    // Это пропустит проверку правил написания кода
     ignoreDuringBuilds: true,
   },
 };
