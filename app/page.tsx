@@ -1,83 +1,43 @@
 "use client";
-import { useState } from 'react';
 
 export default function Home() {
-  const [name, setName] = useState('');
-  const [contact, setContact] = useState('');
-  const [message, setMessage] = useState('');
-  const [status, setStatus] = useState('');
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus('sending');
-    
-    const response = await fetch('/api/telegram', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, contact, message }),
-    });
-
-    if (response.ok) {
-      setStatus('success');
-      setName(''); setContact(''); setMessage('');
-      setTimeout(() => setStatus(''), 3000);
-    } else {
-      setStatus('error');
-    }
-  };
-
   return (
     <main className="min-h-screen relative overflow-hidden bg-[#020406] text-white font-sans flex items-center justify-center p-4">
-      {/* Глубокие темно-зеленые волны на фоне */}
-      <div className="absolute top-[-10%] left-[-10%] w-[70%] h-[70%] bg-[#00331a]/30 rounded-full blur-[120px] animate-pulse"></div>
-      <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-[#004d26]/20 rounded-full blur-[150px] animate-pulse" style={{animationDelay: '3s'}}></div>
+      {/* Глубокие темно-зеленые переливы на фоне */}
+      <div className="absolute top-[-15%] left-[-10%] w-[70%] h-[70%] bg-[#00331a]/20 rounded-full blur-[130px] animate-pulse"></div>
+      <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-[#00ff88]/5 rounded-full blur-[150px] animate-pulse" style={{animationDelay: '3s'}}></div>
 
-      <div className="relative z-10 w-full max-w-lg bg-[#050a0a]/90 backdrop-blur-3xl p-10 rounded-[2.5rem] shadow-[0_0_80px_rgba(0,255,136,0.05)] border border-[#00ff88]/10">
-        <header className="text-center mb-10">
+      <div className="relative z-10 w-full max-w-md bg-[#050a0a]/90 backdrop-blur-3xl p-10 rounded-[2.5rem] shadow-[0_0_80px_rgba(0,255,136,0.05)] border border-[#00ff88]/10 text-center">
+        <header className="mb-12">
           <h1 className="text-5xl font-black tracking-tighter bg-gradient-to-b from-[#00ff88] to-[#004d26] bg-clip-text text-transparent uppercase italic">
             Foma Junior
           </h1>
-          <p className="text-[#00ff88]/40 mt-3 text-[10px] font-bold tracking-[0.3em] uppercase">Gamma Doppler // Emerald Phase</p>
+          <p className="text-[#00ff88]/40 mt-3 text-[10px] font-bold tracking-[0.3em] uppercase">Gamma Doppler // Hub</p>
         </header>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <input 
-            className="w-full p-4 bg-[#0a0f0f] border border-[#00ff88]/10 rounded-2xl outline-none focus:border-[#00ff88] focus:shadow-[0_0_15px_rgba(0,255,136,0.2)] transition-all placeholder:text-[#00ff88]/20 text-[#00ff88]" 
-            placeholder="ИМЯ ПОЛЬЗОВАТЕЛЯ" value={name} onChange={e => setName(e.target.value)} required 
-          />
-          <input 
-            className="w-full p-4 bg-[#0a0f0f] border border-[#00ff88]/10 rounded-2xl outline-none focus:border-[#00ff88] focus:shadow-[0_0_15px_rgba(0,255,136,0.2)] transition-all placeholder:text-[#00ff88]/20 text-[#00ff88]" 
-            placeholder="СВЯЗЬ (TG/TEL)" value={contact} onChange={e => setContact(e.target.value)} required 
-          />
-          <textarea 
-            className="w-full p-4 bg-[#0a0f0f] border border-[#00ff88]/10 rounded-2xl outline-none focus:border-[#00ff88] focus:shadow-[0_0_15px_rgba(0,255,136,0.2)] transition-all h-32 resize-none placeholder:text-[#00ff88]/20 text-[#00ff88]" 
-            placeholder="ВАШЕ СООБЩЕНИЕ..." value={message} onChange={e => setMessage(e.target.value)} required 
-          />
-          
-          <button 
-            type="submit" 
-            disabled={status === 'sending'}
-            className="w-full bg-gradient-to-r from-[#00ff88] to-[#008044] hover:brightness-110 text-[#020406] py-5 rounded-2xl font-black text-lg shadow-[0_10px_30px_rgba(0,255,136,0.2)] transform transition-all active:scale-95 disabled:opacity-50 uppercase tracking-tighter"
+        <div className="flex flex-col gap-5">
+          {/* Кнопка 1: Мои проекты */}
+          <a 
+            href="/projects" 
+            className="group relative w-full py-6 bg-[#0a0f0f] border border-[#00ff88]/20 rounded-2xl font-black text-xl tracking-widest uppercase overflow-hidden transition-all hover:border-[#00ff88] hover:shadow-[0_0_30px_rgba(0,255,136,0.2)] active:scale-95 text-[#00ff88]"
           >
-            {status === 'sending' ? 'ОТПРАВКА...' : 'ОТПРАВИТЬ ДАННЫЕ'}
-          </button>
-        </form>
+            <span className="relative z-10 italic">1. Мои проекты</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#00ff88]/0 via-[#00ff88]/5 to-[#00ff88]/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+          </a>
 
-        {status === 'success' && (
-          <p className="text-[#00ff88] text-center mt-6 text-sm font-bold animate-pulse uppercase tracking-widest">
-            ★ ЗАЯВКА ПРИНЯТА ★
-          </p>
-        )}
-
-        <footer className="mt-12 text-center border-t border-[#00ff88]/5 pt-8">
+          {/* Кнопка 2: Помощник (Ссылка на бота) */}
           <a 
             href="https://t.me/foma_junior_bot" 
-            target="_blank" 
-            className="group inline-flex items-center gap-3 text-[#00ff88]/50 hover:text-[#00ff88] transition-all font-bold text-xs tracking-widest"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full py-6 bg-gradient-to-r from-[#00ff88] to-[#008044] text-[#020406] rounded-2xl font-black text-xl tracking-widest uppercase shadow-[0_10px_40px_rgba(0,255,136,0.2)] transform transition-all hover:brightness-110 active:scale-95 italic"
           >
-            <span>DIRECT LINK:</span>
-            <span className="bg-[#00ff88]/10 px-3 py-1 rounded-md">@foma_junior_bot</span>
+            2. Помощник
           </a>
+        </div>
+
+        <footer className="mt-12 opacity-30">
+          <p className="text-[9px] font-bold tracking-[0.4em] uppercase text-[#00ff88]">System Status: Online</p>
         </footer>
       </div>
     </main>
