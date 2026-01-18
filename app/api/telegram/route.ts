@@ -7,12 +7,12 @@ export async function POST(request: Request) {
     const token = "7598822558:AAH9m3pUvT7vD6pSAnrI-C0qI_H9u-H9u-8"; 
     const chatId = "5616335133";
 
-    // Указываем правильное имя бота в уведомлении
     const text = `
-🚀 **Новая заявка через @foma_junior_bot!**
+🚀 **Новая заявка с сайта!**
 👤 **Имя**: ${name}
 📞 **Контакт**: ${contact}
 💬 **Сообщение**: ${message}
+🤖 **Обработано через**: @foma_junior_bot
     `;
 
     const response = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
@@ -29,6 +29,6 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    return NextResponse.json({ success: false, error: 'Failed to send' }, { status: 500 });
+    return NextResponse.json({ success: false }, { status: 500 });
   }
 }
