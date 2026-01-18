@@ -1,23 +1,57 @@
-export default function Home() {
+import React from 'react';
+
+export default function Page() {
   return (
-    <div className="min-h-screen bg-slate-950 text-white flex flex-col items-center justify-center p-6">
-      <h1 className="text-4xl font-bold mb-8 text-center">
-        Сайт в процессе обновления. Бот временно отключен.
-      </h1>
-      <div className="flex gap-4">
+    <div className="min-h-screen bg-slate-900 text-white flex flex-col items-center justify-center p-8 font-sans">
+      
+      {/* Главный приветственный блок */}
+      <header className="text-center mb-12">
+        <h1 className="text-5xl md:text-6xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+          Приветствую на странице проектов от Foma
+        </h1>
+        <p className="text-gray-400 text-lg">
+          Здесь собраны мои лучшие разработки и актуальные ссылки
+        </p>
+      </header>
+
+      {/* Контейнер с кнопками */}
+      <div className="flex flex-col md:flex-row gap-6 items-center">
+        
+        {/* Кнопка ТГ-канала */}
         <a 
-          href="https://t.me/foma_junior_bot" 
-          className="bg-blue-600 px-6 py-2 rounded-full hover:bg-blue-700 transition"
+          href="https://t.me/+qxcAoFFsuvZiNWMy" 
+          target="_blank" 
+          className="group relative px-8 py-4 bg-blue-600 rounded-2xl font-bold text-xl shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(37,99,235,0.6)] transition-all transform hover:-translate-y-1"
         >
-          Telegram
+          📢 Мой сервер
         </a>
+
+        {/* Кнопка Проектов (ссылка на этот же сайт или GitHub) */}
         <a 
-          href="https://t.me/iqxcAoFFsuvZiNWMy" 
-          className="border border-slate-700 px-6 py-2 rounded-full hover:bg-slate-800 transition"
+          href="#projects" 
+          className="px-8 py-4 bg-slate-800 border border-slate-700 rounded-2xl font-bold text-xl hover:bg-slate-700 transition-all"
         >
-          Контакт
+          🚀 Мои проекты
+        </a>
+
+      </div>
+
+      {/* Плавающая кнопка бота-помощника */}
+      <div className="fixed bottom-8 right-8 animate-pulse">
+        <a 
+          href="https://t.me/твой_ник_бота" 
+          target="_blank"
+          className="flex items-center gap-3 bg-gradient-to-r from-indigo-500 to-purple-600 p-4 rounded-full shadow-2xl hover:scale-110 transition-transform border border-white/20"
+        >
+          <span className="font-bold text-white">💬 Помощник</span>
         </a>
       </div>
+
+      {/* Нижняя часть (футер) */}
+      <footer className="mt-20 text-gray-500 text-sm">
+        © 2026 Все права защищены | Создано Foma
+      </footer>
+
     </div>
   );
 }
