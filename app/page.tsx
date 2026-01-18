@@ -4,7 +4,6 @@ export default function Page() {
   return (
     <div className="min-h-screen bg-slate-900 text-white flex flex-col items-center justify-center p-8 font-sans">
       
-      {/* Главный приветственный заголовок */}
       <header className="text-center mb-12">
         <h1 className="text-5xl md:text-6xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
           Приветствую на странице проектов от Foma
@@ -14,10 +13,7 @@ export default function Page() {
         </p>
       </header>
 
-      {/* Основные кнопки */}
       <div className="flex flex-col md:flex-row gap-6 items-center">
-        
-        {/* Кнопка ТГ-канала */}
         <a 
           href="https://t.me/+qxcAoFFsuvZiNWMy" 
           target="_blank" 
@@ -26,20 +22,18 @@ export default function Page() {
           📢 Мой сервер
         </a>
 
-        {/* Кнопка Проектов */}
         <a 
           href="#projects" 
           className="px-8 py-4 bg-slate-800 border border-slate-700 rounded-2xl font-bold text-xl hover:bg-slate-700 transition-all"
         >
           🚀 Мои проекты
         </a>
-
       </div>
 
-      {/* Плавающая кнопка бота-помощника */}
+      {/* Исправленная ссылка на бота @foma_junior_bot */}
       <div className="fixed bottom-8 right-8 animate-bounce">
         <a 
-          href="https://t.me/f0m0chka_bot" 
+          href="https://t.me/foma_junior_bot" 
           target="_blank"
           className="flex items-center gap-3 bg-gradient-to-r from-indigo-500 to-purple-600 p-4 rounded-full shadow-2xl hover:scale-110 transition-transform border border-white/20"
         >

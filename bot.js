@@ -1,17 +1,22 @@
 const TOKEN = "8417875829:AAGi0pU9GlEdDLdTxH6mzDCuRXrzyOwv3j0";
 const API_URL = `https://api.telegram.org/bot${TOKEN}`;
 
-// Кнопки меню (вынесены отдельно для экономии памяти)
-const keyboard = {
-    keyboard: [
-        [{ text: "🚀 Мои проекты" }, { text: "📢 Мой сервер" }],
-        [{ text: "🔄 Перезапустить меню" }]
-    ],
-    resize_keyboard: true
+const botConfig = {
+    siteUrl: "https://my-portfolio-git-main-f0m0chkas-projects.vercel.app",
+    serverUrl: "https://t.me/+qxcAoFFsuvZiNWMy",
+    keyboard: {
+        keyboard: [
+            [{ text: "🚀 Мои проекты" }, { text: "📢 Мой сервер" }],
+            [{ text: "🔄 Перезапустить меню" }]
+        ],
+        resize_keyboard: true
+    }
 };
 
 async function botHandler() {
-    console.log("⚡ Бот запущен в режиме энергосбережения...");
+    console.log("------------------------------------------");
+    console.log("🚀 БОТ @foma_junior_bot ЗАПУЩЕН");
+    console.log("------------------------------------------");
     let offset = 0;
 
     while (true) {
@@ -27,20 +32,19 @@ async function botHandler() {
 
                     const chatId = msg.chat.id;
                     const text = msg.text;
+                    const userName = msg.from.first_name || "Пользователь";
                     let reply = "";
 
-                    // Оптимизированная логика ответов (исправленная орфография)
                     if (text === "/start" || text === "🔄 Перезапустить меню") {
-                        reply = `👋 *Приветствую!*\n\nЯ твой персональный помощник. Используй кнопки ниже для навигации.`;
+                        reply = `👋 *Приветствую, ${userName}!*\n\nЯ твой помощник @foma_junior_bot. Используй меню ниже.`;
                     } else if (text === "📢 Мой сервер") {
-                        reply = "📢 *Мой Telegram-сервер:*\nhttps://t.me/+qxcAoFFsuvZiNWMy";
+                        reply = `📢 *Мой сервер:*\n${botConfig.serverUrl}`;
                     } else if (text === "🚀 Мои проекты") {
-                        reply = "🚀 *Список моих проектов:*\nhttps://my-portfolio-maxfomin2008-8555-f0m0chkas-projects.vercel.app";
+                        reply = `🚀 *Мои проекты:*\n${botConfig.siteUrl}`;
                     } else {
-                        reply = "✨ Пожалуйста, используйте кнопки меню.";
+                        reply = "✨ Используй кнопки меню.";
                     }
 
-                    // Отправка ответа
                     await fetch(`${API_URL}/sendMessage`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
@@ -48,14 +52,13 @@ async function botHandler() {
                             chat_id: chatId,
                             text: reply,
                             parse_mode: "Markdown",
-                            reply_markup: keyboard
+                            reply_markup: botConfig.keyboard
                         })
                     });
                 }
             }
         } catch (err) {
-            console.error("⚠️ Ошибка сети, повторяю попытку...");
-            await new Promise(resolve => setTimeout(resolve, 5000)); // Пауза при ошибке, чтобы не спамить запросами
+            await new Promise(resolve => setTimeout(resolve, 5000));
         }
     }
 }
