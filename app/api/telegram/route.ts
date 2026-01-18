@@ -4,10 +4,10 @@ export async function POST(request: Request) {
   try {
     const { name, message, contact } = await request.json();
     
-    // Твои проверенные данные для связи
     const token = "7598822558:AAH9m3pUvT7vD6pSAnrI-C0qI_H9u-H9u-8"; 
     const chatId = "5616335133";
 
+    // Указываем правильное имя бота в уведомлении
     const text = `
 🚀 **Новая заявка через @foma_junior_bot!**
 👤 **Имя**: ${name}
